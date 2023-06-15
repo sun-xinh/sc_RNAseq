@@ -2,15 +2,15 @@
 #SBATCH --job-name=SRA_download
 #SBATCH --partition=short
 #SBATCH --export=ALL
-#SBATCH --nodes 1
-#SBATCH --ntasks 1
+#SBATCH --nodes=1
+#SBATCH --ntasks=16  # Change this to represent the number of tasks (downloads) you want to run in parallel
 #SBATCH --mem 32G
 #SBATCH --time 24:00:00
 #SBATCH --out=/scratch/sun.xinh/singlecellrna/project1/logs/%x_%j.log
 #SBATCH --err=/scratch/sun.xinh/singlecellrna/project1/logs/%x_%j.err
 #SBATCH --mail-type=ALL   # get email updates about the job
 #SBATCH --mail-user=sun.xinh@northeastern.edu
-#SBATCH --array=1-768 # Change to represent the total number of samples in your file
+#SBATCH --array=1-768%16  # This will start a new job for every 16 SRA files
 ################################################################################
 # Download fastq files from SRA for PRJNA436229.
 # 2023-06-14
@@ -23,7 +23,6 @@ DEST_DIR=/scratch/$USER/singlecellrna/project2/data
 
 # Change this to the path where you stored your samples list
 ACC_FILE=/scratch/$USER/singlecellrna/project2/samples_file.txt
-ACC_NUM=$(sed "${SLURM_ARRAY_TASK_ID}q;d" ${ACC_FILE})
 
 ######
 
@@ -36,18 +35,20 @@ source activate BINF-01-2023
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
+# Loop over the SRA files and run fastq-dump in parallel
+for i in $(seq 0 $(($SLURM_ARRAY_TASK_ID+15))); do
+    ACC_NUM=$(sed "${i}q;d" ${ACC_FILE})
 
+    # Download files.
+    fastq-dump \
+        --dumpbase \
+        --readids \
+        --split-files \
+        --gzip \
+        --outdir ${DEST_DIR} \
+        ${ACC_NUM} &
+done
 
-# Download files.
-fastq-dump \
-    --dumpbase \
-    --readids \
-    --split-files \
-    --gzip \
-    --outdir ${DEST_DIR} \
-    ${ACC_NUM}
+# Wait for all background jobs to finish
+wait
 
-# If 10X, Rename files for further use
-#mv ${DEST_DIR}/${ACC_NUM}_1.fastq.gz ${DEST_DIR}/${ACC_NUM}_S1_L001_I1_001.fastq.gz
-#mv ${DEST_DIR}/${ACC_NUM}_2.fastq.gz ${DEST_DIR}/${ACC_NUM}_S1_L001_R1_001.fastq.gz
-#mv ${DEST_DIR}/${ACC_NUM}_3.fastq.gz ${DEST_DIR}/${ACC_NUM}_S1_L001_R2_001.fastq.gz
