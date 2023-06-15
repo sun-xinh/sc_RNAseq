@@ -1,0 +1,13 @@
+Module	Section	Sample Name	Source
+FastQC	all_sections	SRR7722938_S1_L001_R2_001	/scratch/sun.xinh/singlecellrna/project1/results/fastqc/SRR7722938_S1_L001_R2_001_fastqc.zip
+FastQC	all_sections	SRR7722942_S1_L001_R1_001	/scratch/sun.xinh/singlecellrna/project1/results/fastqc/SRR7722942_S1_L001_R1_001_fastqc.zip
+FastQC	all_sections	SRR7722940_S1_L001_R2_001	/scratch/sun.xinh/singlecellrna/project1/results/fastqc/SRR7722940_S1_L001_R2_001_fastqc.zip
+FastQC	all_sections	SRR7722939_S1_L001_R1_001	/scratch/sun.xinh/singlecellrna/project1/results/fastqc/SRR7722939_S1_L001_R1_001_fastqc.zip
+FastQC	all_sections	SRR7722941_S1_L001_R1_001	/scratch/sun.xinh/singlecellrna/project1/results/fastqc/SRR7722941_S1_L001_R1_001_fastqc.zip
+FastQC	all_sections	SRR7722940_S1_L001_R1_001	/scratch/sun.xinh/singlecellrna/project1/results/fastqc/SRR7722940_S1_L001_R1_001_fastqc.zip
+FastQC	all_sections	SRR7722942_S1_L001_R2_001	/scratch/sun.xinh/singlecellrna/project1/results/fastqc/SRR7722942_S1_L001_R2_001_fastqc.zip
+FastQC	all_sections	SRR7722938_S1_L001_R1_001	/scratch/sun.xinh/singlecellrna/project1/results/fastqc/SRR7722938_S1_L001_R1_001_fastqc.zip
+FastQC	all_sections	SRR7722937_S1_L001_R2_001	/scratch/sun.xinh/singlecellrna/project1/results/fastqc/SRR7722937_S1_L001_R2_001_fastqc.zip
+FastQC	all_sections	SRR7722937_S1_L001_R1_001	/scratch/sun.xinh/singlecellrna/project1/results/fastqc/SRR7722937_S1_L001_R1_001_fastqc.zip
+FastQC	all_sections	SRR7722941_S1_L001_R2_001	/scratch/sun.xinh/singlecellrna/project1/results/fastqc/SRR7722941_S1_L001_R2_001_fastqc.zip
+FastQC	all_sections	SRR7722939_S1_L001_R2_001	/scratch/sun.xinh/singlecellrna/project1/results/fastqc/SRR7722939_S1_L001_R2_001_fastqc.zip
