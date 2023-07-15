@@ -6,11 +6,11 @@
 #SBATCH --ntasks 1
 #SBATCH --mem 32G
 #SBATCH --time 24:00:00
-#SBATCH --out=/scratch/sun.xinh/singlecellrna/project5/logs/%x_%j.log
-#SBATCH --err=/scratch/sun.xinh/singlecellrna/project5/logs/%x_%j.err
+#SBATCH --out=/scratch/sun.xinh/singlecellrna/project2/logs/%x_%j.log
+#SBATCH --err=/scratch/sun.xinh/singlecellrna/project2/logs/%x_%j.err
 #SBATCH --mail-type=ALL   # get email updates about the job
 #SBATCH --mail-user=sun.xinh@northeastern.edu
-#SBATCH --array=1-50 # Change to represent the total number of samples in your file
+#SBATCH --array=1-768 # Change to represent the total number of samples in your file
 ################################################################################
 # Download fastq files from SRA for PRJNA436229.
 # 2023-06-14
@@ -19,10 +19,10 @@
 ##### VARIABLES #####
 
 # Destination directory where files will be downloaded.
-DEST_DIR=/scratch/$USER/singlecellrna/project5/data
+DEST_DIR=/scratch/$USER/singlecellrna/project2/data
 
 # Change this to the path where you stored your samples list
-ACC_FILE=/scratch/$USER/singlecellrna/project5/$1
+ACC_FILE=/scratch/$USER/singlecellrna/project2/$1
 ACC_NUM=$(sed "${SLURM_ARRAY_TASK_ID}q;d" ${ACC_FILE})
 
 ######
