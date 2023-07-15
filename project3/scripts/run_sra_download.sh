@@ -1,5 +1,11 @@
 #!/bin/bash
 
+### how to calculate all running time
+##SBATCH --mail-type=ALL   # get email updates about the job
+##SBATCH --mail-user=sun.xinh@northeastern.edu
+##SBATCH --out=%x_%j.log
+##SBATCH --err=%x_%j.err
+
 
 ################################################################################
 # This Bash script is help to submit to Slurm in the number of sra exceeds 
@@ -7,6 +13,10 @@
 # Download fastq files from SRA for PRJNA436229. !YOUR SRA NUMBER
 # Author: Xinhao Sun
 # 2023-06-14
+
+# Usage:
+# ./run_sra_download.sh samples_file_name
+# For example: ./run_sra_download.sh samples_file.txt
 ################################################################################
 
 ##### VARIABLES #####
