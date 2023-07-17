@@ -7,8 +7,8 @@
 #SBATCH --cpus-per-task=1
 #SBATCH --mem 32G
 #SBATCH --time 24:00:00
-#SBATCH --out=/scratch/sun.xinh/singlecellrna/project3/scripts/%x_%j.log
-#SBATCH --err=/scratch/sun.xinh/singlecellrna/project3/scripts/%x_%j.err
+#SBATCH --out=/scratch/sun.xinh/singlecellrna/project3/logs/%x_%j.log
+#SBATCH --err=/scratch/sun.xinh/singlecellrna/project3/logs/%x_%j.err
 #SBATCH --mail-type=ALL   # get email updates about the job
 #SBATCH --mail-user=sun.xinh@northeastern.edu
 
@@ -33,8 +33,10 @@ DEST_DIR=/scratch/$USER/singlecellrna/project3/data
 # Change this to the path where you stored your samples list
 ACC_FILE=/scratch/$USER/singlecellrna/project3/$1
 OFFSET=$2
-NUM_ROW=$((OFFSET + SLURM_ARRAY_TASK_ID))
-ACC_NUM=$(sed "${NUM_ROW+1}q;d" ${ACC_FILE})
+NUM_ROW=$((OFFSET + SLURM_ARRAY_TASK_ID + 1))
+#echo ${NUM_ROW}
+ACC_NUM=$(sed "${NUM_ROW}q;d" ${ACC_FILE})
+echo Downloding ${ACC_NUM}
 
 ######
 
@@ -50,13 +52,13 @@ export LC_ALL=en_US.UTF-8
 
 
 # Download files.
-echo "fastq-dump \
+fastq-dump \
     --dumpbase \
     --readids \
     --split-files \
     --gzip \
     --outdir ${DEST_DIR} \
-    ${ACC_NUM}"
+    ${ACC_NUM}
 
 # If 10X, Rename files for further use
 #mv ${DEST_DIR}/${ACC_NUM}_1.fastq.gz ${DEST_DIR}/${ACC_NUM}_S1_L001_I1_001.fastq.gz
