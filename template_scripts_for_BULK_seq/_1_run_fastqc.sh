@@ -3,8 +3,8 @@
 # Perform quality control on FASTQ files using FastQC.
 # https://www.bioinformatics.babraham.ac.uk/projects/fastqc/
 # 
-# Your Name
-# YYYY-MM-DD
+# Xinhao Sun
+# 2022-07-21
 ################################################################################
 
 ### VARIABLES ###
